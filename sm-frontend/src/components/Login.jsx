@@ -4,9 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
+import { gapi } from "gapi-script";
 
 const Login = () => {
-  const navigate = useNavigate();
+  gapi.load("client:auth2", () => {
+    gapi.client.init({
+      clientId: "*****.apps.googleusercontent.com",
+      plugin_name: "chat",
+    });
+  });
+
   const responseGoogle = (response) => {
     console.log(response);
   };
